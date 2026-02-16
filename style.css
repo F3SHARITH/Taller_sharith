@@ -1,0 +1,430 @@
+body {
+    margin: 0;
+    background: rgb(255, 255, 255);
+    color: rgb(2, 0, 0);
+    font-family: Arial, sans-serif;
+}
+
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* TEXTO GIGANTE */
+.background-text {
+    position: absolute;
+    font-size: 12vw;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.719);
+    z-index: 1;
+    pointer-events: none;
+    animation: moverTexto 15s ease-in-out infinite alternate;
+}
+
+@keyframes moverTexto {
+    from { transform: translateX(-30px); }
+  to { transform: translateX(30px); }
+}
+
+
+/* ROBOT */
+.robot {
+    position: relative;
+    z-index: 2;
+    animation: subirRobot 1.5s cubic-bezier(.17,.67,.38,1.29) forwards;
+    transform: translateY(200px);
+    opacity: 0;
+}
+
+@keyframes subirRobot {
+    to {
+    transform: translateY(0);
+    opacity: 1;
+    }
+}
+
+
+
+/* ANIMACIÓN ROBOT */
+@keyframes subirRobot {
+    to {
+    transform: translateY(0);
+    opacity: 1;
+    }
+}
+
+
+.section {
+    padding: 80px 10%;
+    min-height: auto;
+    margin:0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #111;
+    color: white;
+}
+
+
+/* CONTENEDOR GENERAL */
+.container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+/* SOBRE MÍ */
+.about-3d {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 0;
+    background: #111;
+}
+
+/* CONTENEDOR */
+.card-3d {
+    width: 350px;
+    height: 450px;
+    perspective: 1000px; /* profundidad 3D */
+}
+
+/* ELEMENTO QUE GIRA */
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+/* EFECTO HOVER */
+.card-3d:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+/* CARAS */
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* FRENTE */
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ATRÁS */
+.card-back {
+    background: #1a1a1a;
+    color: rgb(255, 255, 255);
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    text-align: center;
+}
+
+
+.screen {
+    background: black;
+    animation: encender 1.5s forwards;
+}
+
+@keyframes encender {
+    0% { filter: brightness(0); }
+    100% { filter: brightness(1); }
+}
+
+
+
+/* BASE */
+.base {
+    width: 200px;
+    height: 20px;
+    background: #333;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+/* CONTENIDO */
+.about-content {
+    color: white;
+    padding: 40px;
+    opacity: 0;
+    animation: aparecerTexto 2s ease forwards;
+    animation-delay: 1.5s;
+}
+
+/* ANIMACIONES */
+
+@keyframes aparecerPC {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes aparecerTexto {
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* ANIMACIÓN FADE */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* SKILLS */
+.skills {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 100px 0;
+    background: #000000;
+    flex-wrap: wrap;
+}
+
+/* TARJETAS */
+.skill-card {
+    position: relative;
+    width: 220px;
+    height: 240px;
+    background: #fffdfd;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: 0.4s ease;
+}
+
+/* GLOW ANIMADO */
+.skill-card::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 60%);
+    top: -50%;
+    left: -50%;
+    opacity: 0;
+    transition: 0.4s ease;
+}
+
+.skill-card:hover::before {
+    opacity: 1;
+}
+
+/* HOVER */
+.skill-card:hover {
+    transform: translateY(-10px);
+    border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* IMAGEN */
+.skill-card img {
+    width: 80px;
+    margin-bottom: 20px;
+    transition: 0.4s;
+}
+
+.skill-card:hover img {
+    transform: scale(1.1);
+}
+
+/* TEXTO */
+.skill-card p {
+    color: white;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+
+/* CARDS */
+.edu-cards {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.edu-card {
+    flex: 1;
+    min-width: 280px;
+    background: rgb(0, 0, 0);
+    padding: 25px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(50, 38, 160, 0.829);
+    transition: all 0.4s ease;
+}
+
+.edu-card h3 {
+    margin-bottom: 10px;
+}
+
+.date {
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.edu-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+
+/* HOBBIES GRID */
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+/*sueños*/
+.suenos-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+    padding: 60px 10%;
+    background: #000000;
+}
+
+.sueno-card {
+    position: relative;
+    width: 70%;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+
+    /* Scroll animation */
+    animation: parallax ;
+    animation-timeline: view();
+    animation-range: entry 0% cover 100%;
+}
+
+
+/* Escalera */
+.sueno-card:nth-child(2) {
+    margin-left: 200px;
+}
+
+.sueno-card:nth-child(3) {
+    margin-left: 0;
+}
+
+.sueno-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+
+/* Oscurecer */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.overlay h3 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.overlay p {
+    font-size: 18px;
+    color: #ddd;
+}
+
+
+/* Hover Effect */
+.sueno-card:hover {
+    transform: scale(1.03);
+}
+
+.sueno-card:hover img {
+    transform: scale(1.1);
+}
+
+.sueno-card:hover .overlay {
+    opacity: 1;
+}
+
+/*DIFERENTE VELOCIDAD A CADA IMAGEN*/
+
+.sueno-card:nth-child(1) {
+    animation-range: entry 0% cover 80%;
+}
+
+.sueno-card:nth-child(2) {
+    animation-range: entry 0% cover 100%;
+}
+
+.sueno-card:nth-child(3) {
+    animation-range: entry 0% cover 120%;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .sueno-card {
+        width: 100%;
+        margin-left: 0 !important;
+        height: 350px;
+    }
+}
+
+/*MOVIMIENTO SUAVE*/
+
+@keyframes parallax {
+    from {
+        transform: translateY(100px);
+    }
+    to {
+        transform: translateY(-100px);
+    }
+}
+
+
+/*FADE */
+.Fade {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.Fade.show {
+    opacity: 1;
+    transform: translateY(0);
+}
