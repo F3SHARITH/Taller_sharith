@@ -1,11 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mi Portafolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
+<section class="hero">
+
+    <h1 class="background-text">HI I'M SHARITH</h1>
+
+    <iframe 
+    class="robot"
+    src="https://my.spline.design/genkubgreetingrobot-2hj8WsEQgLGyC2jN0pRkAIOj/"
+    frameborder="0"
+    width="100%"
+    height="600px">
+    </iframe>
+
+
+</section>
+
+<!-- SOBRE MÍ -->
+<section class="about section Fade">
+    <div class="container">
+        <img src="asset/perfil.jpeg" alt="Dahiana" class="about-img">
+        <div>
+            <h2>Sobre mí</h2>
+            <p>
+                Soy desarrolladora en formación con un fuerte interés 
+                en el diseño web moderno y las experiencias digitales 
+                interactivas. Disfruto transformar ideas en interfaces
+                visualmente atractivas, funcionales y centradas en el usuario. 
+                Estoy construyendo bases sólidas en desarrollo front-end, aplicando 
+                buenas prácticas, control de versiones y explorando tecnologías 3D 
+                para crear proyectos innovadores y diferenciadores.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- CONOCIMIENTOS -->
+<section class="skills section Fade">
+    <h2>Conocimientos</h2>
+    <div class="skill">
+        <p>HTML</p>
+    <div class="bar"><span style="width: 75%"></span></div>
+    </div>
+    <div class="skill">
+        <p>CSS</p>
+    <div class="bar"><span style="width: 70%"></span></div>
+    </div>
+    <div class="skill">
+        <p>HERRAMIENTAS TICS</p>
+    <div class="bar"><span style="width: 85%"></span></div>
+    </div>
+</section>
+
+<!-- ESTUDIOS -->
+<section class="education section Fade">
+    <h2>Estudios</h2>
+    <div class="card">Tecnología en Desarrollo de Software</div>
+    <div class="card">Cursos de Frontend</div>
+</section>
+
+<!-- HOBBIES -->
+<section class="hobbies section Fade">
+    <h2>Hobbies</h2>
+    <div class="cards">
+        <div class="card">🎨 Diseño</div>
+        <div class="card">🎧 Música</div>
+        <div class="card">💻 Programar</div>
+    </div>
+</section>
+
+<!--METAS-->
+
+<section class="suenos-grid">
+
+    <div class="sueno-card">
+        <img src="asset/dinero.jpeg" alt="Sueño 1">
+        <div class="overlay">
+            <h3>Libertad Financiera</h3>
+            <p>Vivir sin limitaciones económicas y disfrutar la vida.</p>
+        </div>
+    </div>
+
+    <div class="sueno-card">
+        <img src="asset/Casa.jpeg" alt="Sueño 2">
+        <div class="overlay">
+            <h3>Casa de mis sueños</h3>
+            <p>Un lugar tranquilo con vistas maravillosas.</p>
+        </div>
+    </div>
+
+    <div class="sueno-card">
+        <img src="asset/carros.jpeg" alt="Sueño 3">
+        <div class="overlay">
+            <h3>autos</h3>
+            <p>la imagen habla por si sola.</p>
+        </div>
+    </div>
+
+</section>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+    });
+});
+
+document.querySelectorAll(".Fade").forEach(el => {
+    observer.observe(el);
+});
+</script>
+
+
+
 </body>
 </html>

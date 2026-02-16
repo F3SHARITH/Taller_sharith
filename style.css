@@ -1,0 +1,265 @@
+body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* TEXTO GIGANTE */
+.background-text {
+    position: absolute;
+    font-size: 12vw;
+    font-weight: bold;
+    color: rgba(131, 128, 128, 0.3);
+    z-index: 1;
+    pointer-events: none;
+    animation: moverTexto 15s ease-in-out infinite alternate;
+}
+
+@keyframes moverTexto {
+    from { transform: translateX(-30px); }
+  to { transform: translateX(30px); }
+}
+
+
+/* ROBOT */
+.robot {
+    position: relative;
+    z-index: 2;
+    animation: subirRobot 1.5s cubic-bezier(.17,.67,.38,1.29) forwards;
+    transform: translateY(200px);
+    opacity: 0;
+}
+
+@keyframes subirRobot {
+    to {
+    transform: translateY(0);
+    opacity: 1;
+    }
+}
+
+
+
+/* ANIMACIÓN ROBOT */
+@keyframes subirRobot {
+    to {
+    transform: translateY(0);
+    opacity: 1;
+    }
+}
+
+
+.section {
+    min-height: 100vh;
+    padding: 100px 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #111;
+    color: white;
+}
+
+/* CONTENEDOR GENERAL */
+.container {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+/* SOBRE MÍ */
+.about-img {
+    width: 300px;
+    border-radius: 20px;
+    animation: fadeIn 2s ease;
+}
+
+/* ANIMACIÓN FADE */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* SKILLS */
+.skill {
+    margin: 20px 0;
+}
+
+.bar {
+    background: #333;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bar span {
+    display: block;
+    height: 10px;
+    background: white;
+    animation: grow 2s ease;
+}
+
+@keyframes grow {
+    from { width: 0; }
+}
+
+/* CARDS */
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 20px;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.card:hover {
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+
+/* HOBBIES GRID */
+.cards {
+    display: flex;
+    gap: 20px;
+}
+
+/*sueños*/
+.suenos-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+    padding: 150px 10%;
+    background: #111;
+}
+
+.sueno-card {
+    position: relative;
+    width: 70%;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+
+    /* Scroll animation */
+    animation: parallax linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 100%;
+}
+
+
+/* Escalera */
+.sueno-card:nth-child(2) {
+    margin-left: 150px;
+}
+
+.sueno-card:nth-child(3) {
+    margin-left: 0;
+}
+
+.sueno-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+
+/* Oscurecer */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.overlay h3 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.overlay p {
+    font-size: 18px;
+    color: #ddd;
+}
+
+
+/* Hover Effect */
+.sueno-card:hover {
+    transform: scale(1.03);
+}
+
+.sueno-card:hover img {
+    transform: scale(1.1);
+}
+
+.sueno-card:hover .overlay {
+    opacity: 1;
+}
+
+/*DIFERENTE VELOCIDAD A CADA IMAGEN*/
+
+.sueno-card:nth-child(1) {
+    animation-range: entry 0% cover 80%;
+}
+
+.sueno-card:nth-child(2) {
+    animation-range: entry 0% cover 100%;
+}
+
+.sueno-card:nth-child(3) {
+    animation-range: entry 0% cover 120%;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .sueno-card {
+        width: 100%;
+        margin-left: 0 !important;
+        height: 350px;
+    }
+}
+
+/*MOVIMIENTO SUAVE*/
+
+@keyframes parallax {
+    from {
+        transform: translateY(100px);
+    }
+    to {
+        transform: translateY(-100px);
+    }
+}
+
+
+/*FADE */
+
+.Fade {
+    opacity: 0;
+    transform: translateY(100px) scale(0.95);
+    transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.Fade.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
