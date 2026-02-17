@@ -30,27 +30,21 @@ body {
   to { transform: translateX(30px); }
 }
 
-
 /* ROBOT */
-.robot-floating {
-    position: fixed;
-    top: 50%;
-    right: 5%;
-    transform: translateY(-50%);
-    transition: all 0.8s cubic-bezier(.17,.67,.38,1.29);
-    z-index: 1000;
-    pointer-events: none;
+.robot {
+    position: relative;
+    z-index: 2;
+    animation: subirRobot 1.5s cubic-bezier(.17,.67,.38,1.29) forwards;
+    transform: translateY(200px);
+    opacity: 0;
 }
 
-/* Cuando baja a Sobre mí */
-.robot-floating.move-down {
-    top: 65%;
-    right: 10%;
-    transform: translateY(-50%) scale(0.85) rotate(5deg);
+@keyframes subirRobot {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
-
-
-
 
 .section {
     padding: 80px 10%;
@@ -240,7 +234,7 @@ body {
 
 /* TEXTO */
 .skill-card p {
-    color: white;
+    color: rgb(255, 255, 255);
     font-size: 18px;
     letter-spacing: 1px;
 }
@@ -256,11 +250,11 @@ body {
 .edu-card {
     flex: 1;
     min-width: 280px;
-    background: rgb(0, 0, 0);
+    backgroun:d rgb(78, 75, 75);
     padding: 25px;
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgb(22, 22, 22);
+    border: 1px solid rgb(0, 0, 0);
     transition: all 0.4s ease;
 }
 
@@ -275,7 +269,7 @@ body {
 
 .edu-card:hover {
     transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    box-shadow: 0 15px 35px rgb(0, 0, 0);
 }
 
 
@@ -330,7 +324,7 @@ mask:
 .hobby-card h3 {
     font-size: 22px;
     letter-spacing: 1px;
-    color: #00ffcc;
+    color: #ffffff;
     transition: 0.3s ease;
 }
 
@@ -417,7 +411,7 @@ mask:
 }
 
 .overlay h3 {
-    color: #00ffcc;
+    color: #ffffff;
     margin-bottom: 10px;
 }
 
@@ -481,6 +475,57 @@ mask:
     background: #111;
 }
 
+
+/* sccion video*/
+
+.video-section {
+    padding: 100px 10%;
+    text-align: center;
+    background: #111;
+}
+
+.video-container {
+    position: relative;
+    display: inline-block;
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 800px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    transition: transform 0.4s ease;
+}
+
+.video-container img {
+    width: 100%;
+    display: block;
+    transition: 0.5s ease;
+}
+
+.video-container:hover img {
+    filter: brightness(0.6);
+    transform: scale(1.05);
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 60px;
+    color: white;
+    background: rgba(0,0,0,0.6);
+    padding: 20px 25px;
+    border-radius: 50%;
+    transition: 0.4s ease;
+}
+
+.video-container:hover .play-button {
+    background: #00ffcc;
+    color: black;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+
+
 /* FOOTER */
 .footer {
     background: #0d0d0d;
@@ -514,8 +559,8 @@ mask:
 /* EFECTO HOVER WOW */
 .social-icons a:hover {
     transform: translateY(-8px) scale(1.1);
-    background: linear-gradient(135deg, #00ffcc, #0066ff);
-    box-shadow: 0 10px 25px rgba(0, 255, 204, 0.4);
+    background: linear-gradient(135deg, #484d4c, #484b50);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.4);
 }
 
 .social-icons a:hover img {
@@ -525,7 +570,7 @@ mask:
 footer .copyright {
     margin-top: 20px;
     font-size: 0.9rem;
-    background: linear-gradient(90deg, #ffffff, #2c518a);
+    background: linear-gradient(90deg, #f1da74, #415f8d);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
