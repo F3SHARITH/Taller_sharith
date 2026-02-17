@@ -22,7 +22,7 @@ body {
     color: rgba(0, 0, 0, 0.719);
     z-index: 1;
     pointer-events: none;
-    animation: moverTexto 15s ease-in-out infinite alternate;
+    animation: moverTexto 2s ease-in-out infinite alternate;
 }
 
 @keyframes moverTexto {
@@ -32,30 +32,24 @@ body {
 
 
 /* ROBOT */
-.robot {
-    position: relative;
-    z-index: 2;
-    animation: subirRobot 1.5s cubic-bezier(.17,.67,.38,1.29) forwards;
-    transform: translateY(200px);
-    opacity: 0;
+.robot-floating {
+    position: fixed;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+    transition: all 0.8s cubic-bezier(.17,.67,.38,1.29);
+    z-index: 1000;
+    pointer-events: none;
 }
 
-@keyframes subirRobot {
-    to {
-    transform: translateY(0);
-    opacity: 1;
-    }
+/* Cuando baja a Sobre mí */
+.robot-floating.move-down {
+    top: 65%;
+    right: 10%;
+    transform: translateY(-50%) scale(0.85) rotate(5deg);
 }
 
 
-
-/* ANIMACIÓN ROBOT */
-@keyframes subirRobot {
-    to {
-    transform: translateY(0);
-    opacity: 1;
-    }
-}
 
 
 .section {
@@ -65,8 +59,8 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: #111;
-    color: white;
+    background: #ffffff;
+    color: rgb(0, 0, 0);
 }
 
 
@@ -78,13 +72,13 @@ body {
 }
 
 /* SOBRE MÍ */
-.about-3d {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 100px 0;
-    background: #111;
+.card-back p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-top: 20px;
 }
+
 
 /* CONTENEDOR */
 .card-3d {
@@ -127,8 +121,8 @@ body {
 
 /* ATRÁS */
 .card-back {
-    background: #1a1a1a;
-    color: rgb(255, 255, 255);
+    background: #ffffff;
+    color: rgb(0, 0, 0);
     transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
@@ -138,36 +132,28 @@ body {
     text-align: center;
 }
 
-
-.screen {
-    background: black;
-    animation: encender 1.5s forwards;
+/* EFECTO TITULO */
+.titulo.wow-titulo {
+    font-size: 5vb;
+    text-align: center;
+    margin-bottom: 40px;
 }
 
-@keyframes encender {
-    0% { filter: brightness(0); }
-    100% { filter: brightness(1); }
+.titulo.wow-titulo {
+    color: transparent;
+    background: linear-gradient(90deg, #213472, #ffffff, #ffffff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradientMove 4s linear infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
 }
 
 
-
-/* BASE */
-.base {
-    width: 200px;
-    height: 20px;
-    background: #333;
-    margin: 10px auto;
-    border-radius: 10px;
-}
-
-/* CONTENIDO */
-.about-content {
-    color: white;
-    padding: 40px;
-    opacity: 0;
-    animation: aparecerTexto 2s ease forwards;
-    animation-delay: 1.5s;
-}
 
 /* ANIMACIONES */
 
@@ -197,7 +183,7 @@ body {
     justify-content: center;
     gap: 40px;
     padding: 100px 0;
-    background: #000000;
+    background: #0d0d0d;
     flex-wrap: wrap;
 }
 
@@ -206,7 +192,7 @@ body {
     position: relative;
     width: 220px;
     height: 240px;
-    background: #fffdfd;
+    background: #121212;
     border-radius: 20px;
     border: 1px solid rgba(255,255,255,0.15);
     display: flex;
@@ -274,7 +260,7 @@ body {
     padding: 25px;
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(50, 38, 160, 0.829);
+    border: 1px solid rgb(22, 22, 22);
     transition: all 0.4s ease;
 }
 
@@ -293,138 +279,255 @@ body {
 }
 
 
-/* HOBBIES GRID */
-.cards {
+/* HOBBIES  */ 
+/* CONTENEDOR HORIZONTAL */
+.hobby-grid {
     display: flex;
-    gap: 20px;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-top: 60px;
 }
 
-/*sueños*/
-.suenos-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 80px;
-    padding: 60px 10%;
-    background: #000000;
-}
-
-.sueno-card {
-    position: relative;
-    width: 70%;
-    height: 500px;
-    overflow: hidden;
+/* TARJETAS */
+.hobby-card {
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    padding: 50px 30px;
     border-radius: 25px;
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.08);
+    text-align: center;
+    position: relative;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+/* BORDE DEGRADADO ELEGANTE */
+.hobby-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 25px;
+    padding: 1px;
+    background: linear-gradient(135deg, #00ffcc, #0066ff);
+-webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+/* TEXTO */
+.hobby-card h3 {
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: #00ffcc;
+    transition: 0.3s ease;
+}
+
+/* HOVER PROFESIONAL */
+.hobby-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+}
+
+.hobby-card:hover::before {
+    opacity: 1;
+}
+
+.hobby-card:hover h3 {
+    letter-spacing: 2px;
+}
+
+
+
+@keyframes rotateGlow { 
+    from { transform: rotate(0deg); } 
+    to { transform: rotate(360deg); } 
+}
+
+
+/*sueños 3D*/
+
+/*         METAS CARTA           */
+.suenos-slider {
+    padding: 100px 20px;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/*          TARJETA              */
+
+.sueno-slide {
+    position: relative;
+    width: 320px;
+    height: 420px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #111;
     cursor: pointer;
-    transition: transform 0.4s ease;
 
-    /* Scroll animation */
-    animation: parallax ;
-    animation-timeline: view();
-    animation-range: entry 0% cover 100%;
+    transition: transform 0.5s ease,
+                box-shadow 0.5s ease;
 }
+/*       BORDE ANIMADO           */
 
-
-/* Escalera */
-.sueno-card:nth-child(2) {
-    margin-left: 200px;
+.sueno-slide::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 22px;
+    background: linear-gradient(90deg, #00ffcc, #0066ff, #00ffcc);
+    background-size: 200% auto;
+    z-index: -1;
+    animation: bordeAnimado 4s linear infinite;
 }
+/*            IMAGEN             */
 
-.sueno-card:nth-child(3) {
-    margin-left: 0;
-}
-
-.sueno-card img {
+.sueno-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s ease;
+    transition: transform 0.7s ease;
 }
-
-
-/* Oscurecer */
+/*           OVERLAY             */
 .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.6);
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 70%);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    justify-content: flex-end;
     padding: 30px;
+    color: white;
+
     opacity: 0;
     transition: opacity 0.5s ease;
 }
 
 .overlay h3 {
-    font-size: 32px;
-    margin-bottom: 15px;
-}
-
-.overlay p {
-    font-size: 18px;
-    color: #ddd;
+    color: #00ffcc;
+    margin-bottom: 10px;
 }
 
 
-/* Hover Effect */
-.sueno-card:hover {
-    transform: scale(1.03);
+/*           HOVER               */
+
+.sueno-slide:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0,255,204,0.2);
 }
 
-.sueno-card:hover img {
+.sueno-slide:hover img {
     transform: scale(1.1);
 }
 
-.sueno-card:hover .overlay {
+.sueno-slide:hover .overlay {
     opacity: 1;
 }
 
-/*DIFERENTE VELOCIDAD A CADA IMAGEN*/
+/*         ANIMACION BORDE       */
 
-.sueno-card:nth-child(1) {
-    animation-range: entry 0% cover 80%;
+@keyframes bordeAnimado {
+    0% { background-position: 0% }
+    100% { background-position: 200% }
 }
 
-.sueno-card:nth-child(2) {
-    animation-range: entry 0% cover 100%;
-}
-
-.sueno-card:nth-child(3) {
-    animation-range: entry 0% cover 120%;
-}
-
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-    .sueno-card {
-        width: 100%;
-        margin-left: 0 !important;
-        height: 350px;
-    }
-}
-
-/*MOVIMIENTO SUAVE*/
-
-@keyframes parallax {
-    from {
-        transform: translateY(100px);
-    }
-    to {
-        transform: translateY(-100px);
-    }
-}
 
 
 /*FADE */
 .Fade {
     opacity: 0;
-    transform: translateY(60px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transform: translateY(80px) scale(0.95);
+    transition: all 0.8s cubic-bezier(.17,.67,.38,1.29);
 }
 
 .Fade.show {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
+
+.footer {
+    background: #000;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.social {
+    color: white;
+    text-decoration: none;
+    padding: 15px 25px;
+    border: 1px solid white;
+    border-radius: 30px;
+    transition: 0.4s ease;
+}
+
+.social:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 20px #00ffcc;
+    background: #111;
+}
+
+/* FOOTER */
+.footer {
+    background: #0d0d0d;
+    padding: 40px 0;
+    text-align: center;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.social-icons a {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #111;
+    transition: all 0.4s ease;
+}
+
+.social-icons img {
+    width: 22px;
+    height: 22px;
+    transition: 0.4s ease;
+}
+
+/* EFECTO HOVER WOW */
+.social-icons a:hover {
+    transform: translateY(-8px) scale(1.1);
+    background: linear-gradient(135deg, #00ffcc, #0066ff);
+    box-shadow: 0 10px 25px rgba(0, 255, 204, 0.4);
+}
+
+.social-icons a:hover img {
+    filter: brightness(0) invert(1);
+}
+
+footer .copyright {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    background: linear-gradient(90deg, #ffffff, #2c518a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
