@@ -250,7 +250,7 @@ body {
 .edu-card {
     flex: 1;
     min-width: 280px;
-    backgroun:d rgb(78, 75, 75);
+    background: rgb(78, 75, 75);
     padding: 25px;
     border-radius: 20px;
     backdrop-filter: blur(10px);
